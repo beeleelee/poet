@@ -61,7 +61,7 @@ func GenerateProof(
 		return 0, nil, err
 	}
 	defer treeCache.Close()
-
+	persist = func(context.Context, *cache.Writer, uint64) error { return nil }
 	return generateProof(ctx, leavesCounter, labelHashFunc, tree, treeCache, deadline, 0, securityParam, persist)
 }
 
